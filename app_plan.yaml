@@ -1,0 +1,23 @@
+Plan: we want to creat an interactive website that shows users the stars and additional information about them
+Example website: 
+ - https://stellarium-web.org/ 
+ - https://theskylive.com/planetarium#ra|17.247509025366824|dec|-17.811706742342587|fov|66
+Elvárások:
+  - legyen egy kezdőlap egy csillagos égboltal mint egy háttérkép
+  - legyenek bejelölve az égbolton a nagyobb csillagképek és nagyobb bolygók, meghatározó csillagok
+  - tudjon a felhasználó rákattintani bármelyik csillagképre
+  - kattintás után ugorjon fel egy ablak amiben további információkat mutatunk meg a felhasználóknak
+    - milyen csillagokból áll
+    - megnevezések
+    - szélességi és hosszúsági fokok mutatása
+    - milyen messze van Földtől
+    - Wikipédia link
+  - a felhasználó képes legyen bezárni a felugró ablakot
+  - a csillagos égbolton legyenek láthatóak az égtájak
+  - effektusok, ikonok
+Adatok:
+  - raster or SVG fájl amiben a csillagos ég van
+  - a csillagképek és a hozzájuk tartozó extra információk (excel fájl)
+    - 88 ismert csillagkép van
+      - to do: létrehozni egy válasz templatet az AI számára
+  - honnan legyen a forrás
