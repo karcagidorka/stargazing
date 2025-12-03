@@ -2,6 +2,7 @@ Plan: we want to creat an interactive website that shows users the stars and add
 Example website: 
  - https://stellarium-web.org/ 
  - https://theskylive.com/planetarium#ra|17.247509025366824|dec|-17.811706742342587|fov|66
+ 
 Elvárások:
   - legyen egy kezdőlap egy csillagos égboltal mint egy háttérkép
   - legyenek bejelölve az égbolton a nagyobb csillagképek és nagyobb bolygók, meghatározó csillagok
@@ -24,3 +25,256 @@ Adatok:
 https://www.nasa.gov/
 https://github.com/Stellarium/stellarium/blob/master/README.md
 88 csillagkép: https://freestarcharts.com/constellations
+
+
+
+
+Requirements:
+  -There should be a homepage with a starry sky as the background image.
+  -The major constellations, major planets, and notable stars should be marked on the sky.
+  -The user should be able to click on any constellation.
+  -After clicking, a popup window should appear showing additional information to the user:
+      -which stars the constellation consists of
+      -names and designations
+      -display of latitude and longitude (coordinates)
+      -distance from Earth
+      -Wikipedia link
+  -The user should be able to close the popup window.
+  -The cardinal directions should be visible on the starry sky.
+  -Effects and icons should be included.
+Data:
+  -A raster or SVG file containing the starry sky.
+  -The constellations and their additional information (Excel file):
+    -There are 88 known constellations
+         -To do: create a response template for the AI
+Sources of information:
+   https://github.com/Stellarium/stellarium/blob/master/README.md
+   88 constellations: https://freestarcharts.com/constellations
+
+
+
+
+
+
+Full JSON structure:
+{
+  "app": {
+    "projectInfo": {
+      "name": "Interactive Star Map",
+      "description": "A web application that displays an interactive star sky with constellations and planets.",
+      "exampleWebsites": [
+        "stellarium-web.org",
+        "theskylive.com/planetarium"
+      ]
+    },
+
+    "homepage": {
+      "background": {
+        "type": "image",
+        "format": "raster_or_svg",
+        "file": "assets/star_sky_background.svg"
+      },
+      "uiElements": {
+        "showCompassDirections": true,
+        "icons": {
+          "starIcon": "assets/icons/star.svg",
+          "planetIcon": "assets/icons/planet.svg",
+          "constellationIcon": "assets/icons/constellation.svg"
+        },
+        "effects": {
+          "hoverGlow": true,
+          "clickHighlight": true,
+          "animatedSky": false
+        }
+      }
+    }
+  },
+
+  "sky": {
+    "constellations": [],  
+    "planets": [],
+    "notableStars": []
+  },
+
+  "interactions": {
+    "clickOnConstellation": true,
+    "popupWindow": {
+      "enabled": true,
+      "fieldsShown": [
+        "names",
+        "stars",
+        "coordinates",
+        "distanceFromEarth",
+        "wikipedia"
+      ],
+      "closable": true
+    }
+  },
+
+  "dataSources": {
+    "skyBackground": {
+      "file": "assets/star_sky_background.svg",
+      "type": "SVG/Raster"
+    },
+    "constellationsExcel": {
+      "file": "data/constellations.xlsx",
+      "contains": [
+        "88 constellations",
+        "star lists",
+        "right ascension",
+        "declination",
+        "alternative names",
+        "distance data"
+      ]
+    },
+    "officialSources": [
+      "https://www.nasa.gov/",
+      "https://github.com/Stellarium/stellarium",
+      "https://freestarcharts.com/constellations"
+    ]
+  }
+}
+
+
+
+Template for all 88 CONSTELLATIONS:
+{
+  "id": "",
+  "name": "Orion",
+  "names": {
+    "latin": "Orion",
+    "english": "The Hunter",
+    "hungarian": "Orion"
+  },
+
+  "positionOnSkyMap": {
+    "pixelCoordinates": { "x": 0, "y": 0 },
+    "equatorialCoordinates": {
+      "rightAscension": "",
+      "declination": ""
+    }
+  },
+
+  "stars": [
+    {
+      "name": "",
+      "coordinates": {
+        "rightAscension": "",
+        "declination": ""
+      },
+      "distanceFromEarth_ly": 0
+    }
+  ],
+
+  "distanceFromEarth_ly": {
+    "min": null,
+    "max": null
+  },
+
+  "visiblePlanets": [],
+
+  "wikipedia": {
+    "url": ""
+  },
+
+  "metadata": {
+    "source": "constellations.xlsx",
+    "interactive": true
+  }
+}
+
+
+
+constellations:
+{
+  "constellations": [
+    { "id": "andromeda",  "name": "Andromeda",  "names": { "latin": "Andromeda", "english": "Andromeda" } },
+    { "id": "antlia",     "name": "Antlia",     "names": { "latin": "Antlia",    "english": "Air Pump" } },
+    { "id": "apus",       "name": "Apus",       "names": { "latin": "Apus",      "english": "Bird of Paradise" } },
+    { "id": "aquarius",   "name": "Aquarius",   "names": { "latin": "Aquarius",  "english": "Water Bearer" } },
+    { "id": "aquila",     "name": "Aquila",     "names": { "latin": "Aquila",    "english": "Eagle" } },
+    { "id": "ara",        "name": "Ara",        "names": { "latin": "Ara",       "english": "Altar" } },
+    { "id": "aries",      "name": "Aries",      "names": { "latin": "Aries",     "english": "Ram" } },
+    { "id": "auriga",     "name": "Auriga",     "names": { "latin": "Auriga",    "english": "Charioteer" } },
+    { "id": "bootes",     "name": "Boötes",     "names": { "latin": "Boötes",    "english": "Herdsman" } },
+    { "id": "caelum",     "name": "Caelum",     "names": { "latin": "Caelum",    "english": "Chisel" } },
+    { "id": "camelopardalis", "name": "Camelopardalis", "names": { "latin": "Camelopardalis", "english": "Giraffe" } },
+    { "id": "cancer",     "name": "Cancer",     "names": { "latin": "Cancer",    "english": "Crab" } },
+    { "id": "canes_venatici", "name": "Canes Venatici", "names": { "latin": "Canes Venatici", "english": "Hunting Dogs" } },
+    { "id": "canis_major",   "name": "Canis Major",   "names": { "latin": "Canis Major",   "english": "Big Dog" } },
+    { "id": "canis_minor",   "name": "Canis Minor",   "names": { "latin": "Canis Minor",   "english": "Small Dog" } },
+    { "id": "capricornus",   "name": "Capricornus",   "names": { "latin": "Capricornus",   "english": "Sea Goat" } },
+    { "id": "carina",     "name": "Carina",     "names": { "latin": "Carina",    "english": "Keel of Ship" } },
+    { "id": "cassiopeia", "name": "Cassiopeia", "names": { "latin": "Cassiopeia", "english": "Cassiopeia" } },
+    { "id": "centaurus",  "name": "Centaurus",  "names": { "latin": "Centaurus",  "english": "Centaur" } },
+    { "id": "cepheus",    "name": "Cepheus",    "names": { "latin": "Cepheus",    "english": "Cepheus" } },
+    { "id": "cetus",      "name": "Cetus",      "names": { "latin": "Cetus",      "english": "Whale" } },
+    { "id": "chamaeleon", "name": "Chamaeleon", "names": { "latin": "Chamaeleon", "english": "Chameleon" } },
+    { "id": "circinus",   "name": "Circinus",   "names": { "latin": "Circinus",   "english": "Compass" } },
+    { "id": "columba",    "name": "Columba",    "names": { "latin": "Columba",    "english": "Dove" } },
+    { "id": "coma_berenices", "name": "Coma Berenices", "names": { "latin": "Coma Berenices", "english": "Berenice's Hair" } },
+    { "id": "corona_australis", "name": "Corona Australis", "names": { "latin": "Corona Australis", "english": "Southern Crown" } },
+    { "id": "corona_borealis",  "name": "Corona Borealis",  "names": { "latin": "Corona Borealis",  "english": "Northern Crown" } },
+    { "id": "corvus",     "name": "Corvus",     "names": { "latin": "Corvus",     "english": "Crow" } },
+    { "id": "crater",     "name": "Crater",     "names": { "latin": "Crater",     "english": "Cup" } },
+    { "id": "crux",       "name": "Crux",       "names": { "latin": "Crux",       "english": "Southern Cross" } },
+    { "id": "cygnus",     "name": "Cygnus",     "names": { "latin": "Cygnus",     "english": "Swan" } },
+    { "id": "delphinus",  "name": "Delphinus",  "names": { "latin": "Delphinus",  "english": "Dolphin" } },
+    { "id": "dorado",     "name": "Dorado",     "names": { "latin": "Dorado",     "english": "Swordfish" } },
+    { "id": "draco",      "name": "Draco",      "names": { "latin": "Draco",      "english": "Dragon" } },
+    { "id": "equuleus",   "name": "Equuleus",   "names": { "latin": "Equuleus",   "english": "Little Horse" } },
+    { "id": "eridanus",   "name": "Eridanus",   "names": { "latin": "Eridanus",   "english": "River" } },
+    { "id": "fornax",     "name": "Fornax",     "names": { "latin": "Fornax",     "english": "Furnace" } },
+    { "id": "gemini",     "name": "Gemini",     "names": { "latin": "Gemini",     "english": "Twins" } },
+    { "id": "grus",       "name": "Grus",       "names": { "latin": "Grus",       "english": "Crane" } },
+    { "id": "hercules",   "name": "Hercules",   "names": { "latin": "Hercules",   "english": "Hercules" } },
+    { "id": "horologium", "name": "Horologium", "names": { "latin": "Horologium", "english": "Clock" } },
+    { "id": "hydra",      "name": "Hydra",      "names": { "latin": "Hydra",      "english": "Water Serpent" } },
+    { "id": "hydrus",     "name": "Hydrus",     "names": { "latin": "Hydrus",     "english": "Water Snake (Male)" } },
+    { "id": "indus",      "name": "Indus",      "names": { "latin": "Indus",      "english": "Indian" } },
+    { "id": "lacerta",    "name": "Lacerta",    "names": { "latin": "Lacerta",    "english": "Lizard" } },
+    { "id": "leo",        "name": "Leo",        "names": { "latin": "Leo",        "english": "Lion" } },
+    { "id": "leo_minor",  "name": "Leo Minor",  "names": { "latin": "Leo Minor",  "english": "Little Lion" } },
+    { "id": "lepus",      "name": "Lepus",      "names": { "latin": "Lepus",      "english": "Hare" } },
+    { "id": "libra",      "name": "Libra",      "names": { "latin": "Libra",      "english": "Scales" } },
+    { "id": "lupus",      "name": "Lupus",      "names": { "latin": "Lupus",      "english": "Wolf" } },
+    { "id": "lynx",       "name": "Lynx",       "names": { "latin": "Lynx",       "english": "Lynx" } },
+    { "id": "lyra",       "name": "Lyra",       "names": { "latin": "Lyra",       "english": "Harp" } },
+    { "id": "mensa",      "name": "Mensa",      "names": { "latin": "Mensa",      "english": "Table Mountain" } },
+    { "id": "microscopium","name": "Microscopium","names": { "latin": "Microscopium","english": "Microscope" } },
+    { "id": "monoceros",  "name": "Monoceros",  "names": { "latin": "Monoceros",  "english": "Unicorn" } },
+    { "id": "musca",      "name": "Musca",      "names": { "latin": "Musca",      "english": "Fly" } },
+    { "id": "norma",      "name": "Norma",      "names": { "latin": "Norma",      "english": "Carpenter's Level" } },
+    { "id": "octans",     "name": "Octans",     "names": { "latin": "Octans",     "english": "Octant" } },
+    { "id": "ophiuchus",  "name": "Ophiuchus",  "names": { "latin": "Ophiuchus",  "english": "Serpent Holder" } },
+    { "id": "orion",      "name": "Orion",      "names": { "latin": "Orion",      "english": "Hunter" } },
+    { "id": "pavo",       "name": "Pavo",       "names": { "latin": "Pavo",       "english": "Peacock" } },
+    { "id": "pegasus",    "name": "Pegasus",    "names": { "latin": "Pegasus",    "english": "Winged Horse" } },
+    { "id": "perseus",    "name": "Perseus",    "names": { "latin": "Perseus",    "english": "Perseus" } },
+    { "id": "phoenix",    "name": "Phoenix",    "names": { "latin": "Phoenix",    "english": "Phoenix" } },
+    { "id": "pictor",     "name": "Pictor",     "names": { "latin": "Pictor",     "english": "Painter's Easel" } },
+    { "id": "pisces",     "name": "Pisces",     "names": { "latin": "Pisces",     "english": "Fishes" } },
+    { "id": "piscis_austrinus","name": "Piscis Austrinus","names": { "latin": "Piscis Austrinus","english": "Southern Fish" } },
+    { "id": "puppis",     "name": "Puppis",     "names": { "latin": "Puppis",     "english": "Stern of Ship" } },
+    { "id": "pyxis",      "name": "Pyxis",      "names": { "latin": "Pyxis",      "english": "Compass" } },
+    { "id": "reticulum",  "name": "Reticulum",  "names": { "latin": "Reticulum",  "english": "Net" } },
+    { "id": "sagitta",    "name": "Sagitta",    "names": { "latin": "Sagitta",    "english": "Arrow" } },
+    { "id": "sagittarius","name": "Sagittarius","names": { "latin": "Sagittarius","english": "Archer" } },
+    { "id": "scorpius",   "name": "Scorpius",   "names": { "latin": "Scorpius",   "english": "Scorpion" } },
+    { "id": "sculptor",   "name": "Sculptor",   "names": { "latin": "Sculptor",   "english": "Sculptor's Tools" } },
+    { "id": "scutum",     "name": "Scutum",     "names": { "latin": "Scutum",     "english": "Shield" } },
+    { "id": "serpens",    "name": "Serpens",    "names": { "latin": "Serpens",    "english": "Serpent" } },
+    { "id": "sextans",    "name": "Sextans",    "names": { "latin": "Sextans",    "english": "Sextant" } },
+    { "id": "taurus",     "name": "Taurus",     "names": { "latin": "Taurus",     "english": "Bull" } },
+    { "id": "telescopium","name": "Telescopium","names": { "latin": "Telescopium","english": "Telescope" } },
+    { "id": "triangulum", "name": "Triangulum", "names": { "latin": "Triangulum", "english": "Triangle" } },
+    { "id": "triangulum_australe","name": "Triangulum Australe","names": { "latin": "Triangulum Australe","english": "Southern Triangle" } },
+    { "id": "tucana",     "name": "Tucana",     "names": { "latin": "Tucana",     "english": "Toucan" } },
+    { "id": "ursa_major", "name": "Ursa Major", "names": { "latin": "Ursa Major", "english": "Big Bear" } },
+    { "id": "ursa_minor", "name": "Ursa Minor", "names": { "latin": "Ursa Minor", "english": "Little Bear" } },
+    { "id": "vela",       "name": "Vela",       "names": { "latin": "Vela",       "english": "Sails of Ship" } },
+    { "id": "virgo",      "name": "Virgo",      "names": { "latin": "Virgo",      "english": "Virgin / Maiden" } },
+    { "id": "volans",     "name": "Volans",     "names": { "latin": "Volans",     "english": "Flying Fish" } },
+    { "id": "vulpecula",  "name": "Vulpecula",  "names": { "latin": "Vulpecula",  "english": "Little Fox" } }
+  ]
+}
